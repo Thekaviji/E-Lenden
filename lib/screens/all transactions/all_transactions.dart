@@ -60,23 +60,12 @@ class _AllTransactionsState extends State<AllTransactions> {
                         ),
                       );
                     },
-                    onLongPress: () {
-                      // Handle deletion if necessary
-                    },
                     child: Container(
-                      height: 100, // Increase height for better visibility
+                      height: 105, // Increase height for better visibility
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: AppConstants.secondaryColor,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: const Offset(0, 3), // Shadow position
-                          ),
-                        ],
+                        border: Border.all(color: Colors.grey),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -87,7 +76,7 @@ class _AllTransactionsState extends State<AllTransactions> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  width: 50,
+                                  width: 65,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                     color: transaction.transactionType == 'Cash In'

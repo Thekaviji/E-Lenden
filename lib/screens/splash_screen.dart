@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:typing_text_animation/typing_text_animation.dart';
 import '../../constants/constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacementNamed('/home');
     });
   }
@@ -34,14 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
               color: Colors.white,
             ),
             SizedBox(height: 20),
-
-            Text(
-              'Welcome to E-Lenden',
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            TypingTextAnimation(
+              texts: ["Welcome to E-Lenden"],
+              textStyle: TextStyle(color: Colors.white, fontSize: 20.0),
+              showCursor: true,
             ),
             SizedBox(height: 10),
             Text(

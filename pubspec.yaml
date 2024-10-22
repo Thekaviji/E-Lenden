@@ -40,6 +40,8 @@ dependencies:
   provider: ^6.1.2
   awesome_snackbar_content: ^0.1.4
   path_provider: ^2.1.4
+  animated_text_lerp: ^1.0.5
+  typing_text_animation: ^0.1.0
 
 dev_dependencies:
   flutter_test:

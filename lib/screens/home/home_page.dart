@@ -19,10 +19,7 @@ class HomePage extends StatelessWidget {
           children: [
             const BalanceCard(),
             const SizedBox(height: 20),
-            const Text(
-              'Latest',
-              style: TextStyle(color: Colors.grey),
-            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -39,7 +36,7 @@ class HomePage extends StatelessWidget {
                   },
                   child: const Text(
                     'See all',
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: Colors.grey,fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
               ],
