@@ -28,25 +28,13 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Icon(
-              Icons.account_balance_wallet,
-              size: 100,
-              color: Colors.white,
-            ),
-            SizedBox(height: 20),
+            Image(image: AssetImage('assets/images/Elenden.png')),
+            Text('W E L C O M E',style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),),
+            SizedBox(height: 10),
             TypingTextAnimation(
-              texts: ["Welcome to E-Lenden"],
+              texts: ["Manage your transactions with ease!"],
               textStyle: TextStyle(color: Colors.white, fontSize: 20.0),
               showCursor: true,
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Manage your transactions with ease!',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-              ),
             ),
           ],
         ),

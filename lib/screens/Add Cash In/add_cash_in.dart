@@ -21,6 +21,16 @@ class _AddCashInState extends State<AddCashIn> {
   final _transactionTimeController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    // Set initial date and time to current
+    final now = DateTime.now();
+    _transactionDateController.text = now.toIso8601String().split('T').first;
+    _transactionTimeController.text = TimeOfDay.fromDateTime(now).format(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -124,13 +134,13 @@ class _AddCashInState extends State<AddCashIn> {
                     );
                     return;
                   }
-        
+
                   final amount = double.parse(_amountController.text);
                   final description = _descriptionController.text;
                   final paymentMode = _selectedPaymentMode!;
                   final transactionDate = _transactionDateController.text;
                   final transactionTime = _transactionTimeController.text;
-        
+
                   // Create a new TransactionModel instance
                   final newTransaction = TransactionModel(
                     transactionType: 'Cash In',
@@ -143,21 +153,21 @@ class _AddCashInState extends State<AddCashIn> {
                     transactionDate: transactionDate,
                     transactionTime: transactionTime,
                   );
-        
+
                   // Add the new transaction
                   Provider.of<TransactionProvider>(context, listen: false).addTransaction(newTransaction);
-        
+
                   _showSnackbar(
                     context: context,
                     title: 'Success',
                     message: 'Transaction added successfully!',
                     contentType: ContentType.success,
                   );
-        
+
                   // Navigate back after success
                   Navigator.of(context).pop();
                 },
-        
+
                 child: const Text(
                   'Submit',
                   style: TextStyle(color: Colors.white),

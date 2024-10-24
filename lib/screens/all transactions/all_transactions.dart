@@ -26,11 +26,11 @@ class _AllTransactionsState extends State<AllTransactions> {
         ),
         backgroundColor: AppConstants.primaryColor, // Set background color from constants
       ),
-      body:  Padding(
+      body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Consumer<TransactionProvider>(
           builder: (context, provider, child) {
-            final transactions = provider.transactions;
+            final transactions = provider.transactions.reversed.toList();
             double netBalance = 0;
             double netCashIn = 0;
             double netCashOut = 0;
@@ -43,6 +43,25 @@ class _AllTransactionsState extends State<AllTransactions> {
               }
               netBalance = netCashIn - netCashOut; // Update net balance
             }
+
+            // Check if there are no transactions
+            if (transactions.isEmpty) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(image: AssetImage('assets/images/notFound.png')),
+                  Text(
+                    'No transactions found.',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            // Show transactions if available
             return ListView.builder(
               itemCount: transactions.length,
               itemBuilder: (context, index) {
@@ -114,7 +133,7 @@ class _AllTransactionsState extends State<AllTransactions> {
                               ],
                             ),
 
-                            const SizedBox(height:18 ),
+                            const SizedBox(height: 18),
                             Container(height: 1, color: Colors.black12),
                             const SizedBox(height: 5),
                             Row(

@@ -3,8 +3,6 @@ import 'package:elenden/constants/constants.dart';
 import 'package:elenden/provider/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sliding_number/sliding_number.dart';
-import 'package:typewritertext/typewritertext.dart';
 
 class BalanceCard extends StatefulWidget {
   const BalanceCard({super.key});

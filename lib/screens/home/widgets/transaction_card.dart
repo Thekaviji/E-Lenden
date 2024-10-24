@@ -11,8 +11,24 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TransactionProvider>(
       builder: (context, provider, child) {
-        final transactions = provider.transactions;
+        final transactions = provider.transactions.reversed.toList();
 
+        // Check if there are no transactions
+        if (transactions.isEmpty) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(image: AssetImage('assets/images/notFound.png')),
+              Text(
+                'No transactions found.',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          );
+        }
         return ListView.builder(
           itemCount: transactions.length,
           itemBuilder: (context, index) {

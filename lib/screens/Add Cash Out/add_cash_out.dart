@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../constants/constants.dart';
 import '../../model/transaction_model.dart';
 import '../../provider/transaction_provider.dart';
+import 'package:intl/intl.dart'; // Import for formatting date and time
 
 class AddCashOut extends StatefulWidget {
   const AddCashOut({super.key});
@@ -19,6 +20,15 @@ class _AddCashOutState extends State<AddCashOut> {
   final _descriptionController = TextEditingController();
   final _transactionDateController = TextEditingController();
   final _transactionTimeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the initial date and time to the current date and time
+    final now = DateTime.now();
+    _transactionDateController.text = DateFormat('yyyy-MM-dd').format(now);
+    _transactionTimeController.text = DateFormat('HH:mm').format(now);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,13 +134,13 @@ class _AddCashOutState extends State<AddCashOut> {
                     );
                     return;
                   }
-            
+
                   final amount = double.parse(_amountController.text);
                   final description = _descriptionController.text;
                   final paymentMode = _selectedPaymentMode!;
                   final transactionDate = _transactionDateController.text;
                   final transactionTime = _transactionTimeController.text;
-            
+
                   // Create a new TransactionModel instance
                   final newTransaction = TransactionModel(
                     transactionType: 'Cash Out',
@@ -143,17 +153,17 @@ class _AddCashOutState extends State<AddCashOut> {
                     transactionDate: transactionDate,
                     transactionTime: transactionTime,
                   );
-            
+
                   // Add the new transaction
                   Provider.of<TransactionProvider>(context, listen: false).addTransaction(newTransaction);
-            
+
                   _showSnackbar(
                     context: context,
                     title: 'Success',
                     message: 'Transaction added successfully!',
                     contentType: ContentType.success,
                   );
-            
+
                   // Navigate back after success
                   Navigator.of(context).pop();
                 },
@@ -178,7 +188,7 @@ class _AddCashOutState extends State<AddCashOut> {
     );
     if (picked != null) {
       setState(() {
-        _transactionDateController.text = picked.toIso8601String().split('T').first;
+        _transactionDateController.text = DateFormat('yyyy-MM-dd').format(picked);
       });
     }
   }
